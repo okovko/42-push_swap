@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   populate_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 19:53:00 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/07 13:42:23 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/07 13:42:23 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-#include "libft.h"
-
-t_lst	*ft_lstnew(void const *dat, int sz)
+void		populate_b(t_lst *a, t_lst *b)
 {
-	t_lst	*ll;
+	int		pb_sz;
 
-	if (NULL == (ll = (t_lst *)malloc(sizeof(*ll))))
-		return (NULL);
-	if (NULL == (ll->dat = malloc(sizeof(sz))))
+	pb_sz = ft_lstsz(a) / 2;
+	while (pb_sz > 0)
 	{
-		free(ll);
-		return (NULL);
+		op_pb(&a, &b);
+		pb_sz--;
 	}
-	if (dat)
-	{
-		ft_memcpy(ll->dat, dat, sz);
-		ll->sz = sz;
-	}
-	else
-	{
-		ll->dat = NULL;
-		ll->sz = 0;
-	}
-	ll->prv = NULL;
-	ll->nxt = NULL;
-	return (ll);
 }

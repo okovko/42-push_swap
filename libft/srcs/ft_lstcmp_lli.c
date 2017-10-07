@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstcmp_lli.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 19:53:00 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/06 18:21:29 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/06 18:23:33 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "libft.h"
 
-t_lst	*ft_lstnew(void const *dat, int sz)
+int		ft_lstcmp_lli(t_lst *a, t_lst *b)
 {
-	t_lst	*ll;
+	long long	a_val;
+	long long	b_val;
 
-	if (NULL == (ll = (t_lst *)malloc(sizeof(*ll))))
-		return (NULL);
-	if (NULL == (ll->dat = malloc(sizeof(sz))))
-	{
-		free(ll);
-		return (NULL);
-	}
-	if (dat)
-	{
-		ft_memcpy(ll->dat, dat, sz);
-		ll->sz = sz;
-	}
-	else
-	{
-		ll->dat = NULL;
-		ll->sz = 0;
-	}
-	ll->prv = NULL;
-	ll->nxt = NULL;
-	return (ll);
+	a_val = *(long long*)a->dat;
+	b_val = *(long long*)b->dat;
+	return (a_val - b_val);
 }

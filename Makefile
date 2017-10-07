@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = checker
+NAME1 = checker
+NAME2 = push_swap
 SRCS = $(wildcard srcs/*.c)
 BINS = $(patsubst srcs/%.c, %.o, $(SRCS))
 FLAGS = -g -Wall -Wextra -Werror
@@ -24,15 +25,18 @@ LIBFT = ./libft/libft.a
 %.o : srcs/%.c
 	gcc -Iincs -Ilibft/incs $(FLAGS) -c $<
 
-all: libft $(NAME)
+all: libft $(NAME1) $(NAME2)
 
 libft: $(LIBFT)
 
 $(LIBFT):
 	make -C ./libft
 
-$(NAME): $(LIBFT) $(BINS)
-	gcc -Iincs -Ilibft/incs $(FLAGS) $(LIBFT) $(BINS) checker.c -o $(NAME)
+$(NAME1): $(LIBFT) $(BINS)
+	gcc -Iincs -Ilibft/incs $(FLAGS) $(LIBFT) $(BINS) checker.c -o $(NAME1)
+
+$(NAME2): $(LIBFT) $(BINS)
+	gcc -Iincs -Ilibft/incs $(FLAGS) $(LIBFT) $(BINS) push_swap.c -o $(NAME2)
 
 clean:
 	make clean -C ./libft

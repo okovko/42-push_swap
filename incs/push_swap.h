@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 18:36:34 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 21:33:54 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 13:38:10 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,14 @@ void			op_rra(t_lst **a, t_lst **b);
 void			op_rrb(t_lst **a, t_lst **b);
 void			op_rrr(t_lst **a, t_lst **b);
 t_bool			check(int ac, char **av);
+t_lst			*parse_vals(int ac, char **av, char **edg);
+t_bool			check_range(t_lst *ll);
+t_bool			check_dupe(t_lst *ll);
+t_bool			check_sorted(t_lst *ll);
+void			dbg_print(t_lst *ll);
+t_bool			check_ops(t_lst *vals, t_lst *ops);
+t_lst			*parse_ops(void);
+t_bool			check(int ac, char **av);
+int				rot_sort(t_lst **ll);
+int				sort(t_lst **ll);
+void			populate_b(t_lst *a, t_lst *b);

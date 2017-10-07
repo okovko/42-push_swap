@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   check_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 19:53:00 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/07 13:39:21 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/07 13:39:21 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-#include "libft.h"
-
-t_lst	*ft_lstnew(void const *dat, int sz)
+t_bool		check_sorted(t_lst *ll)
 {
-	t_lst	*ll;
+	int			cur_val;
+	int			nxt_val;
+	t_lst		*beg;
 
-	if (NULL == (ll = (t_lst *)malloc(sizeof(*ll))))
-		return (NULL);
-	if (NULL == (ll->dat = malloc(sizeof(sz))))
+	beg = ll;
+	while (true)
 	{
-		free(ll);
-		return (NULL);
+		cur_val = *(int *)ll->dat;
+		ll = ll->nxt;
+		nxt_val = *(int *)ll->dat;
+		if (beg == ll)
+			break ;
+		if (cur_val > nxt_val)
+			return (false);
 	}
-	if (dat)
-	{
-		ft_memcpy(ll->dat, dat, sz);
-		ll->sz = sz;
-	}
-	else
-	{
-		ll->dat = NULL;
-		ll->sz = 0;
-	}
-	ll->prv = NULL;
-	ll->nxt = NULL;
-	return (ll);
+	return (true);
 }

@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   check_range.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 19:53:00 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/07 13:38:35 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/07 13:38:35 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-#include "libft.h"
-
-t_lst	*ft_lstnew(void const *dat, int sz)
+t_bool		check_range(t_lst *ll)
 {
-	t_lst	*ll;
+	t_lst		*beg;
+	long long	val;
+	long long	imin;
+	long long	imax;
 
-	if (NULL == (ll = (t_lst *)malloc(sizeof(*ll))))
-		return (NULL);
-	if (NULL == (ll->dat = malloc(sizeof(sz))))
+	beg = ll;
+	imin = (int)(~(~0u >> 1));
+	imax = (int)(~0u >> 1);
+	while (true)
 	{
-		free(ll);
-		return (NULL);
+		val = *(long long *)ll->dat;
+		if (val < imin || val > imax)
+		{
+			ft_putstr_fd("Error\n", 2);
+			return (false);
+		}
+		ll = ll->nxt;
+		if (beg == ll)
+			break ;
 	}
-	if (dat)
-	{
-		ft_memcpy(ll->dat, dat, sz);
-		ll->sz = sz;
-	}
-	else
-	{
-		ll->dat = NULL;
-		ll->sz = 0;
-	}
-	ll->prv = NULL;
-	ll->nxt = NULL;
-	return (ll);
+	return (true);
 }

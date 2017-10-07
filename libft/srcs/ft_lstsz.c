@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstsz.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 19:53:00 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/06 19:33:50 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/06 19:33:50 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "libft.h"
 
-t_lst	*ft_lstnew(void const *dat, int sz)
+int		ft_lstsz(t_lst *ll)
 {
-	t_lst	*ll;
+	int		sz;
+	t_lst	*beg;
+	t_lst	*lft;
+	t_lst	*rgt;
 
-	if (NULL == (ll = (t_lst *)malloc(sizeof(*ll))))
-		return (NULL);
-	if (NULL == (ll->dat = malloc(sizeof(sz))))
+	if (NULL == ll)
+		return (0);
+	beg = ll;
+	lft = ll;
+	rgt = ll->nxt;
+	if (lft == rgt)
+		return (1);
+	sz = 0;
+	while (true)
 	{
-		free(ll);
-		return (NULL);
+		ll = ll->nxt;
+		if (beg == ll)
+			return (sz);
 	}
-	if (dat)
-	{
-		ft_memcpy(ll->dat, dat, sz);
-		ll->sz = sz;
-	}
-	else
-	{
-		ll->dat = NULL;
-		ll->sz = 0;
-	}
-	ll->prv = NULL;
-	ll->nxt = NULL;
-	return (ll);
 }

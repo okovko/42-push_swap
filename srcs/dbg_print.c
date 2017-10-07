@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   dbg_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 19:53:00 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/07 13:39:45 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/07 13:39:45 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <stdio.h>
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_lst	*ft_lstnew(void const *dat, int sz)
+void		dbg_print(t_lst *ll)
 {
-	t_lst	*ll;
+	t_lst	*beg;
 
-	if (NULL == (ll = (t_lst *)malloc(sizeof(*ll))))
-		return (NULL);
-	if (NULL == (ll->dat = malloc(sizeof(sz))))
+	beg = ll;
+	if (NULL == beg)
+		return ;
+	while (true)
 	{
-		free(ll);
-		return (NULL);
+		fprintf(stderr, "%d\n", *(int *)ll->dat);
+		ll = ll->nxt;
+		if (beg == ll)
+			break ;
 	}
-	if (dat)
-	{
-		ft_memcpy(ll->dat, dat, sz);
-		ll->sz = sz;
-	}
-	else
-	{
-		ll->dat = NULL;
-		ll->sz = 0;
-	}
-	ll->prv = NULL;
-	ll->nxt = NULL;
-	return (ll);
 }

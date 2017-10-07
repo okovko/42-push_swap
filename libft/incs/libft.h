@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:29:19 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 17:15:47 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 13:47:04 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,12 @@ t_lst				*ft_lstpop(t_lst **ll);
 t_lst				*ft_lstiter(t_lst *ll, void (*ff)(t_lst *elm));
 t_lst				*ft_lstmap(t_lst *ll, t_lst *(*ff)(t_lst *elm));
 t_lst				*ft_lstclnk(t_lst *ll);
+t_lst				*ft_lstsort(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstmax(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
+t_bool				ft_lstp_rot_sorted(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
+int					ft_lstcmp_lli(t_lst *a, t_lst *b);
+int					ft_lstsz(t_lst *ll);
 int					ft_nbrlen(int val);
 int					ft_diglen(int val);
 long				ft_ldiglen(long val);
