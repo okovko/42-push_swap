@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:41:14 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 13:41:14 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 16:31:47 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int			sort(t_lst **ll)
 	{
 		if (min == *ll)
 			break ;
-		*ll = (*ll)->nxt;
 		op_ra(ll, NULL);
+		ft_putstr("ra\n");
 		ii++;
 	}
 	return (ii);

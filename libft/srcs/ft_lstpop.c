@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 16:30:31 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 16:30:31 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 19:31:34 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_lst	*ft_lstpop(t_lst **ll)
 	
 	if (NULL == ll || NULL == *ll)
 		return (NULL);
-	if ((*ll)->prv == (*ll)->nxt)
+	if (*ll == (*ll)->nxt)
 	{
 		nod = *ll;
 		*ll = NULL;

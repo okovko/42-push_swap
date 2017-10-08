@@ -6,9 +6,11 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:40:04 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 13:40:04 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 16:15:34 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 #include "push_swap.h"
 
@@ -40,15 +42,15 @@ t_bool		check_ops(t_lst *vals, t_lst *ops)
 	{
 		op = *(int *)ops->dat;
 		g_op[op](&vals, &tmp);
-		//fprintf(stderr, "printing vals\n");
-		//dbg_print(vals);
-		//fprintf(stderr, "printing tmp\n");
-		//dbg_print(tmp);
+		fprintf(stderr, "printing a\n");
+		dbg_print(vals);
+		fprintf(stderr, "printing b\n");
+		dbg_print(tmp);
 		if (E_PS_OP_NONE == op)
 			return (false);
 		ops = ops->nxt;
 		if (beg == ops)
 			break ;
 	}
-	return (NULL == tmp && check_sorted(vals));
+	return (NULL == tmp && ft_lstp_sorted(vals, ft_lstcmp_lli));
 }

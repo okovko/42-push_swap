@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_ra.c                                            :+:      :+:    :+:   */
+/*   ft_lstp_each.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 20:57:13 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 16:39:15 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/07 18:10:25 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/07 18:10:25 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			op_ra(t_lst **a, t_lst **b)
+t_bool		ft_lstp_each(t_lst *ll, t_bool (*pred)(t_lst *nod))
 {
-	(void)b;
-	*a = (*a)->nxt;
+	t_lst	*beg;
+
+	beg = ll;
+	while (true)
+	{
+		if (false == pred(ll))
+			return (false);
+		ll = ll->nxt;
+		if (beg == ll)
+			break ;
+	}
+	return (true);
 }

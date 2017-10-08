@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_ra.c                                            :+:      :+:    :+:   */
+/*   ft_lstp_sorted.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 20:57:13 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 16:39:15 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/07 16:55:20 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/07 17:03:51 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			op_ra(t_lst **a, t_lst **b)
+t_bool		ft_lstp_sorted(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b))
 {
-	(void)b;
-	*a = (*a)->nxt;
+	t_lst	*beg;
+
+	beg = ll;
+	while (true)
+	{
+		if (cmp(ll, ll->nxt) > 0)
+			return (false);
+		ll = ll->nxt;
+		if (beg == ll->nxt)
+			break ;
+	}
+	return (true);
 }

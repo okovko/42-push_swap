@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:40:57 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 13:40:57 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 16:32:02 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			rot_sort(t_lst **ll)
 	t_lst	*beg;
 	t_lst	*min;
 	t_lst	*max;
-	t_bool	unsorted;
+	t_bool	swap;
 
 	beg = *ll;
 	min = ft_lstmin(*ll, ft_lstcmp_lli);
@@ -26,16 +26,18 @@ int			rot_sort(t_lst **ll)
 	ii = 0;
 	while (true)
 	{
-		unsorted = ft_lstcmp_lli(*ll, (*ll)->nxt) > 0
-			&& *ll != max && (*ll)->nxt != min;
-		if (unsorted)
+		swap = ft_lstcmp_lli(*ll, (*ll)->nxt) > 0
+			&& !(*ll == max && (*ll)->nxt == min);
+		if (swap)
 		{
 			op_sa(ll, NULL);
-			op_ra(ll, NULL);
-			ii += 2;
+			ft_putstr("sa\n");
+			ii++;
 		}
-		*ll = (*ll)->nxt;
-		if (beg == *ll && false == unsorted)
+		op_ra(ll, NULL);
+		ft_putstr("ra\n");
+		ii++;
+		if (true == ft_lstp_rot_sorted(min, ft_lstcmp_lli))
 			break ;
 	}
 	return (ii);

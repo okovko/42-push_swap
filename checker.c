@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:33:31 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 21:33:31 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 15:20:00 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,22 @@
 
 int			main(int ac, char **av)
 {
-	if (true == check(ac, av))
-		ft_putstr_fd("OK\n", 1);
+	t_lst	*vals;
+	t_lst	*ops;
+
+	vals = NULL;
+	ops = NULL;
+	if (false == parse_vals(ac, av, &vals)
+			|| false == ft_lstp_each(vals, check_range)
+			|| false == ft_lstp_uniq(vals, ft_lstcmp_lli))
+		ft_putstr_fd("Error\n", 2);
+	else if (false == parse_ops(&ops))
+		ft_putstr_fd("Error\n", 2);
+	else if (false == check_ops(vals, ops))
+		ft_putstr("KO\n");
 	else
-		ft_putstr_fd("KO\n", 1);
+		ft_putstr("OK\n");
+	ft_lstnfree(&vals, 1);
+	ft_lstnfree(&ops, 1);
+	return (0);
 }

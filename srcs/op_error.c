@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 19:37:13 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 19:37:13 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 15:54:26 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,4 @@ void	op_error(t_lst **a, t_lst **b)
 {
 	(void)a;
 	(void)b;
-	ft_putstr_fd("Error\n", 2);
 }

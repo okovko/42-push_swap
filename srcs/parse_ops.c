@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:40:21 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 13:40:21 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/07 15:53:29 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static t_map_kv		g_op_kvs[] = (t_map_kv[])
 	{(void *)"pb", (void *)(int[]){E_PS_OP_PB}},
 	{(void *)"ra", (void *)(int[]){E_PS_OP_RA}},
 	{(void *)"rb", (void *)(int[]){E_PS_OP_RB}},
-	{(void *)"rr", (void *)(int[]){E_PS_OP_RR}},
 	{(void *)"rra", (void *)(int[]){E_PS_OP_RRA}},
 	{(void *)"rrb", (void *)(int[]){E_PS_OP_RRB}},
 	{(void *)"rrr", (void *)(int[]){E_PS_OP_RRR}},
+	{(void *)"rr", (void *)(int[]){E_PS_OP_RR}},
 };
 static t_map		g_op_map =
 {
@@ -34,23 +34,23 @@ static t_map		g_op_map =
 	.kvs = g_op_kvs,
 };
 
-t_lst		*parse_ops(void)
+t_bool				parse_ops(t_lst **ops)
 {
-	t_lst		*ll;
 	char		*ss;
 	t_map_kv	*kv;
 	int			op;
 
-	ll = NULL;
+	*ops = NULL;
 	while (get_next_line(1, &ss) > 0)
 	{
 		kv = ft_mapget(&g_op_map, (void *)ss, ft_map_keycmp_str);
 		if (NULL == kv)
-			break ;
+			return (false);
 		op = *(int *)kv->val;
-		//fprintf(stderr, "storing op %d\n", op);
-		ll = ft_lstadd(&ll, ft_lstnew(&op, sizeof(op)));
+		ft_lstadd(ops, ft_lstnew(&op, sizeof(op)));
 	}
-	dbg_print(ll);
-	return (ft_lstsrev(&ll));
+	ft_lstsrev(ops);
+	// remove the single line below later
+	dbg_print(*ops);
+	return (true);
 }
