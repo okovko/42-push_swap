@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/06 19:53:00 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/08 19:39:41 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_lst	*ft_lstnew(void const *dat, int sz)
 		ll->dat = NULL;
 		ll->sz = 0;
 	}
-	ll->prv = NULL;
-	ll->nxt = NULL;
+	ll->prv = ll;
+	ll->nxt = ll;
 	return (ll);
 }

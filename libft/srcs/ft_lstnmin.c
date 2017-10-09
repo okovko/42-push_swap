@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnode.c                                       :+:      :+:    :+:   */
+/*   ft_lstnmin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/13 16:37:46 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 19:39:26 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/08 15:36:32 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/08 15:36:32 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "libft.h"
 
-t_lst	*ft_lstnode(void const *dat, int sz)
+t_lst	*ft_lstnmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b), int sz)
 {
-	t_lst	*nod;
+	t_lst	*beg;
+	t_lst	*min;
 
-	if (NULL == (nod = malloc(sizeof(t_lst))))
+	if (NULL == ll || NULL == cmp || sz <= 0)
 		return (NULL);
-	nod->dat = (void *)dat;
-	nod->sz = sz;
-	nod->prv = nod;
-	nod->nxt = nod;
-	return (nod);
+	beg = ll;
+	min = ll;
+	while (true)
+	{
+		if ((cmp(ll, min) < 0))
+			min = ll;
+		ll = ll->nxt;
+		sz--;
+		if (ll == beg || sz <= 0)
+			return (min);
+	}
+	return (min);
 }

@@ -6,31 +6,29 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/18 08:15:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 19:44:43 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/08 19:38:50 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_lst	*ft_lstadd(t_lst **ll, t_lst *nod)
+t_lst	*ft_lstadd(t_lst **l1, t_lst *l2)
 {
-	if (NULL == ll)
-	{
-		nod->prv = nod;
-		nod->nxt = nod;
-		return (nod);
-	}
-	if (NULL == *ll)
-	{
-		nod->prv = nod;
-		nod->nxt = nod;
-		*ll = nod;
-		return (*ll);
-	}
-	nod->prv = (*ll)->prv;
-	nod->nxt = *ll;
-	(*ll)->prv->nxt = nod;
-	(*ll)->prv = nod;
-	*ll = nod;
-	return (*ll);
+	t_lst	*tmp;
+	
+	if (NULL == l1 && NULL == l2)
+		return (NULL);
+	if (NULL == l1 && NULL != l2)
+		return (l2);
+	if (NULL == l2)
+		return (*l1);
+	if (NULL == *l1)
+		return ((*l1 = l2));
+	l2->prv->nxt = *l1;
+	(*l1)->prv->nxt = l2;
+	tmp = l2->prv;
+	l2->prv = (*l1)->prv;
+	(*l1)->prv = tmp;
+	*l1 = l2;
+	return (*l1);
 }

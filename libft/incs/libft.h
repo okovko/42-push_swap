@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:29:19 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 15:34:40 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/08 20:06:08 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,28 @@ t_lst				*ft_lstnew(void const *dat, int sz);
 t_lst				*ft_lstdelone(t_lst **ll, void (*del)(void *, int));
 t_lst				*ft_lstdel(t_lst **ll, void (*del)(void *, int));
 t_lst				*ft_lstadd(t_lst **ll, t_lst *nod);
+t_lst				*ft_lstapp(t_lst **l1, t_lst *l2);
 t_lst				*ft_lstpop(t_lst **ll);
+t_lst				*ft_lstbop(t_lst **ll);
 t_lst				*ft_lstiter(t_lst *ll, void (*ff)(t_lst *elm));
 t_lst				*ft_lstmap(t_lst *ll, t_lst *(*ff)(t_lst *elm));
 t_lst				*ft_lstclnk(t_lst *ll);
 t_lst				*ft_lstsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstmin2(t_lst *nod1, t_lst *nod2,
+								int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstnmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b), int sz);
 t_lst				*ft_lstmax(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstmax2(t_lst *nod1, t_lst *nod2,
+								int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstnmax(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b), int sz);
+t_lst				*ft_lstlgt(t_lst *ll, t_lst *nod,
+								int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstglt(t_lst *ll, t_lst *nod,
+								int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstmerge(t_lst **into, t_lst **outof,
+									int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstswp(t_lst **ll);
 t_bool				ft_lstp_each(t_lst *ll, t_bool (*pred)(t_lst *nod));
 t_bool				ft_lstp_uniq(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
 t_bool				ft_lstp_sorted(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));

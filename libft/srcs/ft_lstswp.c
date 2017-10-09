@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnode.c                                       :+:      :+:    :+:   */
+/*   ft_lstswp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/13 16:37:46 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 19:39:26 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/08 15:59:23 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/08 15:59:23 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "libft.h"
 
-t_lst	*ft_lstnode(void const *dat, int sz)
+t_lst	*ft_lstswp(t_lst **ll)
 {
-	t_lst	*nod;
-
-	if (NULL == (nod = malloc(sizeof(t_lst))))
-		return (NULL);
-	nod->dat = (void *)dat;
-	nod->sz = sz;
-	nod->prv = nod;
-	nod->nxt = nod;
-	return (nod);
+	return (ft_lstadd(ll, ft_lstpop(&(*ll)->nxt)));
 }

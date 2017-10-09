@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnode.c                                       :+:      :+:    :+:   */
+/*   merge.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/13 16:37:46 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 19:39:26 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/08 15:45:17 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/08 20:10:04 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-#include "libft.h"
-
-t_lst	*ft_lstnode(void const *dat, int sz)
+int				merge(t_lst **a, t_lst **b, int sz)
 {
-	t_lst	*nod;
-
-	if (NULL == (nod = malloc(sizeof(t_lst))))
-		return (NULL);
-	nod->dat = (void *)dat;
-	nod->sz = sz;
-	nod->prv = nod;
-	nod->nxt = nod;
-	return (nod);
+	(void)a;
+	(void)b;
+	(void)sz;
+	return (0);
 }

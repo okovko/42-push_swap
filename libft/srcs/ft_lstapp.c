@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnode.c                                       :+:      :+:    :+:   */
+/*   ft_lstapp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/13 16:37:46 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 19:39:26 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/08 17:01:38 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/08 20:06:41 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "libft.h"
 
-t_lst	*ft_lstnode(void const *dat, int sz)
+t_lst	*ft_lstapp(t_lst **l1, t_lst *l2)
 {
-	t_lst	*nod;
+	t_lst	*tmp;
 
-	if (NULL == (nod = malloc(sizeof(t_lst))))
-		return (NULL);
-	nod->dat = (void *)dat;
-	nod->sz = sz;
-	nod->prv = nod;
-	nod->nxt = nod;
-	return (nod);
+	tmp = *l1;
+	ft_lstadd(l1, l2);
+	return ((*l1 = tmp));
 }

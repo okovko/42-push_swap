@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnode.c                                       :+:      :+:    :+:   */
+/*   ft_lstmerge.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/13 16:37:46 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 19:39:26 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/08 15:54:50 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/08 19:38:44 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 #include "libft.h"
 
-t_lst	*ft_lstnode(void const *dat, int sz)
+t_lst	*ft_lstmerge(t_lst **into, t_lst **outof,
+						int (*cmp)(t_lst *a, t_lst *b))
 {
-	t_lst	*nod;
+	t_lst	*lgt;
+	t_lst	*glt;
+	t_lst	*pop;
 
-	if (NULL == (nod = malloc(sizeof(t_lst))))
-		return (NULL);
-	nod->dat = (void *)dat;
-	nod->sz = sz;
-	nod->prv = nod;
-	nod->nxt = nod;
-	return (nod);
+	while (NULL != *outof)
+	{
+		pop = ft_lstpop(outof);
+		lgt = ft_lstlgt(*into, pop, cmp);
+		glt = ft_lstglt(*into, pop, cmp);
+		if (NULL != lgt)
+			ft_lstadd(&lgt, pop);
+		else if (NULL != glt)
+			ft_lstadd(&glt->nxt, pop);
+		else
+			ft_lstadd(into, pop);
+	}
+	return (NULL);
 }
