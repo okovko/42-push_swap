@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:29:19 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/10 00:57:23 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/10 16:06:12 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ void				ft_putstr_fd(char const *ss, int fd);
 void				ft_putendl_fd(char const *ss, int fd);
 void				ft_putnbr_fd(int val, int fd);
 void				ft_lstsplit(t_lst *l1, t_lst *l2);
+t_lst				*ft_lstget(t_lst *ll, int ii);
 t_lst				*ft_lstnew(void const *dat, int sz);
 t_lst				*ft_lstdelone(t_lst **ll, void (*del)(void *, int));
 t_lst				*ft_lstdel(t_lst **ll, void (*del)(void *, int));

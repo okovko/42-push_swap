@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstapp.c                                        :+:      :+:    :+:   */
+/*   ft_lstget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/08 17:01:38 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/10 16:08:57 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/10 16:04:12 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/10 16:04:12 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_lst	*ft_lstapp(t_lst **l1, t_lst *l2)
+t_lst	*ft_lstget(t_lst *ll, int ii)
 {
-	t_lst	*tmp;
-
-	tmp = *l1;
-	ft_lstadd(l1, l2);
-	return ((*l1 = tmp));
+	if (0 == ii)
+		return (ll);
+	while (0 > ii)
+	{
+		ll = ll->prv;
+		ii++;
+	}
+	while (0 < ii)
+	{
+		ll = ll->nxt;
+		ii--;
+	}
+	return (ll);
 }
