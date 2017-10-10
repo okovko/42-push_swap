@@ -1,43 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstpop.c                                        :+:      :+:    :+:   */
+/*   ft_lstsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/06 16:30:31 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/09 18:18:53 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/09 22:31:55 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/09 22:31:55 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_lst	*ft_lstpop(t_lst **ll)
+void	ft_lstsplit(t_lst *l1, t_lst *l2)
 {
-	t_lst	*aa;
-	t_lst	*bb;
-	t_lst	*cc;
-	
-	if (NULL == ll || NULL == *ll)
-		return (NULL);
-	if (*ll == (*ll)->nxt)
-	{
-		bb = *ll;
-		*ll = NULL;
-		return (bb);
-	}
-	bb = *ll;
-	aa = bb->prv;
-	cc = bb->nxt;
-	aa->nxt = cc;
-	cc->prv = aa;
-	*ll = cc;
-	/*
-	(*ll)->nxt->prv = (*ll)->prv;
-	(*ll)->prv->nxt = (*ll)->nxt;
-	*ll = (*ll)->nxt;
-	*/
-	bb->prv = bb;
-	bb->nxt = bb;
-	return (bb);
+	t_lst	*tmp;
+
+	tmp = l1->prv;
+	l1->prv = l2->prv;
+	l2->prv->nxt = l1;
+	l2->prv = tmp;
+	tmp->nxt = l2;
 }

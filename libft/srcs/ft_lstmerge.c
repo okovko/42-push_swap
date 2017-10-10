@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/08 15:54:50 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/09 15:51:40 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/10 00:56:03 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ t_lst	*ft_lstmerge(t_lst **into, t_lst **outof,
 		else
 			ft_lstadd(into, pop);
 	}
-	return (NULL);
+	return (ft_lstmin(*into, cmp));
 }

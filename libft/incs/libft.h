@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:29:19 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/09 22:12:06 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/10 00:57:23 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ typedef struct		s_lst
 	int				sz;
 }					t_lst;
 
+typedef struct		s_tupl
+{
+	void			*p[0];
+}					t_tupl;
+
 typedef enum		e_bool
 {
 	false,
@@ -72,11 +77,11 @@ void				*ft_memchr(const void *mm, int cc, int sz);
 int					ft_memcmp(const void *m1, const void *m2, int sz);
 int					ft_strlen(const char *ss);
 char				*ft_strdup(const char *src);
-char				*ft_strcpy(char *dest, const char *src);
-char				*ft_strncpy(char *dest, const char *src, int sz);
-char				*ft_strcat(char *dest, const char *src);
-char				*ft_strncat(char *dest, const char *src, int sz);
-int					ft_strlcat(char *dest, const char *src, int sz);
+char				*ft_strcpy(char *dst, const char *src);
+char				*ft_strncpy(char *dst, const char *src, int sz);
+char				*ft_strcat(char *dst, const char *src);
+char				*ft_strncat(char *dst, const char *src, int sz);
+int					ft_strlcat(char *dst, const char *src, int sz);
 char				*ft_strchr(const char *ss, char qry);
 char				*ft_strchrnul(const char *ss, char qry);
 char				*ft_strrchr(const char *ss, char qry);
@@ -131,6 +136,7 @@ void				ft_putchar_fd(char cc, int fd);
 void				ft_putstr_fd(char const *ss, int fd);
 void				ft_putendl_fd(char const *ss, int fd);
 void				ft_putnbr_fd(int val, int fd);
+void				ft_lstsplit(t_lst *l1, t_lst *l2);
 t_lst				*ft_lstnew(void const *dat, int sz);
 t_lst				*ft_lstdelone(t_lst **ll, void (*del)(void *, int));
 t_lst				*ft_lstdel(t_lst **ll, void (*del)(void *, int));
@@ -142,6 +148,7 @@ t_lst				*ft_lstiter(t_lst *ll, void (*ff)(t_lst *elm));
 t_lst				*ft_lstmap(t_lst *ll, t_lst *(*ff)(t_lst *elm));
 t_lst				*ft_lstclnk(t_lst *ll);
 t_lst				*ft_lstbsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstmsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmin2(t_lst *nod1, t_lst *nod2,
 								int (*cmp)(t_lst *a, t_lst *b));
