@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/18 08:14:03 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 19:39:41 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:19:00 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_lst	*ft_lstnew(void const *dat, int sz)
 
 	if (NULL == (ll = (t_lst *)malloc(sizeof(*ll))))
 		return (NULL);
-	if (NULL == (ll->dat = malloc(sizeof(sz))))
+	if (NULL == (ll->dat = malloc(sz)))
 	{
 		free(ll);
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 16:30:31 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 20:11:57 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/09 16:02:31 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,30 @@
 
 t_lst	*ft_lstpop(t_lst **ll)
 {
-	t_lst	*nod;
+	t_lst	*aa;
+	t_lst	*bb;
+	t_lst	*cc;
 	
 	if (NULL == ll || NULL == *ll)
 		return (NULL);
 	if (*ll == (*ll)->nxt)
 	{
-		nod = *ll;
+		bb = *ll;
 		*ll = NULL;
-		return (nod);
+		return (bb);
 	}
+	bb = *ll;
+	aa = bb->prv;
+	cc = bb->nxt;
+	aa->nxt = cc;
+	cc->prv = aa;
+	*ll = cc;
+	/*
 	(*ll)->nxt->prv = (*ll)->prv;
 	(*ll)->prv->nxt = (*ll)->nxt;
-	nod = *ll;
 	*ll = (*ll)->nxt;
-	nod->prv = nod;
-	nod->nxt = nod;
-	return (nod);
+	*/
+	bb->prv = bb;
+	bb->nxt = bb;
+	return (bb);
 }

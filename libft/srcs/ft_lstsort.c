@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 18:02:14 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 16:00:25 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:37:08 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_lst	*ft_lstsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b))
 	swap = false;
 	while (true)
 	{
-		if (cmp(itr, itr->nxt) > 0)
+		if (itr->nxt != beg && cmp(itr, itr->nxt) > 0)
 		{
 			swap = true;
 			ft_lstadd(&itr, ft_lstpop(&itr->nxt));
@@ -35,7 +35,7 @@ t_lst	*ft_lstsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b))
 		itr = itr->nxt;
 		if (itr == beg && false == swap)
 			break ;
-		else
+		else if (itr == beg)
 			swap = false;
 	}
 	return (beg);
