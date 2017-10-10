@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:29:19 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/08 20:06:08 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/09 22:12:06 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ t_lst				*ft_lstbop(t_lst **ll);
 t_lst				*ft_lstiter(t_lst *ll, void (*ff)(t_lst *elm));
 t_lst				*ft_lstmap(t_lst *ll, t_lst *(*ff)(t_lst *elm));
 t_lst				*ft_lstclnk(t_lst *ll);
-t_lst				*ft_lstsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b));
+t_lst				*ft_lstbsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmin2(t_lst *nod1, t_lst *nod2,
 								int (*cmp)(t_lst *a, t_lst *b));

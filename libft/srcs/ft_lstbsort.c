@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsort.c                                       :+:      :+:    :+:   */
+/*   ft_lstbsort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,22 +12,21 @@
 
 #include "libft.h"
 
-t_lst	*ft_lstsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b))
+static t_lst	*bsort(t_lst *itr, int (*cmp)(t_lst *a, t_lst *b))
 {
 	t_lst	*beg;
-	t_lst	*itr;
+	t_lst	*min;
+	t_lst	*max;
 	t_bool	swap;
 
-	if (NULL == ll || NULL == *ll || NULL == cmp)
-		return (NULL);
-	beg = *ll;
-	itr = beg;
-	if (itr == itr->nxt)
-		return (beg);
+	beg = itr;
+	min = ft_lstmin(itr, ft_lstcmp_lli);
+	max = ft_lstmax(itr, ft_lstcmp_lli);
 	swap = false;
 	while (true)
 	{
-		if (itr->nxt != beg && cmp(itr, itr->nxt) > 0)
+		if (cmp(itr, itr->nxt) > 0
+			&& !(max == itr && min == itr->nxt))
 		{
 			swap = true;
 			ft_lstadd(&itr, ft_lstpop(&itr->nxt));
@@ -38,5 +37,15 @@ t_lst	*ft_lstsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b))
 		else if (itr == beg)
 			swap = false;
 	}
-	return (beg);
+	return (min);
+}
+
+t_lst			*ft_lstbsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b))
+{
+
+	if (NULL == ll || NULL == *ll || NULL == cmp)
+		return (NULL);
+	if (*ll == (*ll)->nxt)
+		return (*ll);
+	return ((*ll = bsort(*ll, cmp)));
 }
