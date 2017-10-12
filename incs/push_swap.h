@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 18:36:34 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/11 20:12:37 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/12 00:29:02 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,5 @@ t_bool			parse_vals(int ac, char **av, t_lst **ll);
 t_bool			parse_ops(t_lst **ops);
 t_bool			check_ops(t_lst *vals, t_lst *ops);
 int				sort(t_lst **aa, t_lst **bb);
+int				msort_b(t_lst **aa, t_lst **bb, int sz);
+int				msort_a(t_lst **aa, t_lst **bb, int sz);

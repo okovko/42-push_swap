@@ -62,7 +62,7 @@ int				merge_b(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 	ops = 0;
 	while (b_sz > 0)
 	{
-		if (a_sz > 0 && ft_lstcmp_lli(*bb, *aa) < 0)
+		if (a_sz > 0 && ft_lstcmp_lli(*aa, *bb) < 0)
 		{
 			ops += merge_b_helper(aa, bb);
 			a_sz--;
@@ -80,14 +80,19 @@ int				merge_b(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 	return (ops);
 }
 
-int				base_case(t_lst **aa, t_lst **bb, int which)
+int				base_case_a(t_lst **aa, t_lst **bb)
 {
-	if ('a' == which && ft_lstcmp_lli(*aa, (*aa)->nxt) > 0)
+	if (ft_lstcmp_lli(*aa, (*aa)->nxt) > 0)
 	{
 		op_sa(aa, bb);
 		ft_putstr("sa\n");
 	}
-	if ('b' == which && ft_lstcmp_lli(*bb, (*bb)->nxt) > 0)
+	return (1);
+}
+
+int				base_case_b(t_lst **aa, t_lst **bb)
+{
+	if (ft_lstcmp_lli(*bb, (*bb)->nxt) > 0)
 	{
 		op_sb(aa, bb);
 		ft_putstr("sb\n");
@@ -95,35 +100,36 @@ int				base_case(t_lst **aa, t_lst **bb, int which)
 	return (1);
 }
 
-int				push_other(t_lst **aa, t_lst **bb, int sz, int which)
+int				push_a(t_lst **aa, t_lst **bb, int sz)
 {
 	int		ops;
 
 	ops = 0;
-	if ('a' == which)
+	while (sz--)
 	{
-		while (sz--)
-		{
-			op_pb(aa, bb);
-			ft_putstr("pb\n");
-			ops++;
-		}
-	}
-	else if ('b' == which)
-	{
-		while (sz--)
-		{
-			op_pa(aa, bb);
-			ft_putstr("pa\n");
-			ops++;
-		}
+		op_pa(aa, bb);
+		ft_putstr("pa\n");
+		ops++;
 	}
 	return (ops);
 }
 
-int				msort(t_lst **aa, t_lst **bb, int sz, int which)
+int				push_b(t_lst **aa, t_lst **bb, int sz)
 {
-	int		other;
+	int		ops;
+
+	ops = 0;
+	while (sz--)
+	{
+		op_pb(aa, bb);
+		ft_putstr("pb\n");
+		ops++;
+	}
+	return (ops);
+}
+
+int				msort_a(t_lst **aa, t_lst **bb, int sz)
+{
 	int		aa_sz;
 	int		bb_sz;
 	int		ops;
@@ -131,18 +137,34 @@ int				msort(t_lst **aa, t_lst **bb, int sz, int which)
 	if (1 == sz)
 		return (0);
 	if (2 == sz)
-		return (base_case(aa, bb, which));
-	other = 'a' == which ? 'b' : 'a';
+		return (base_case_a(aa, bb));
 	bb_sz = sz / 2;
 	aa_sz = sz - bb_sz;
 	ops = 0;
-	ops += push_other(aa, bb, 'a' == which ? bb_sz : aa_sz, which);
-	ops += msort(aa, bb, aa_sz, which);
-	ops += msort(aa, bb, bb_sz, other);
-	if ('a' == which)
-		ops += merge_a(aa, bb, aa_sz, bb_sz);
-	else if ('b' == which)
-		ops += merge_b(aa, bb, aa_sz, bb_sz);
+	ops += push_b(aa, bb, bb_sz);
+	ops += msort_a(aa, bb, aa_sz);
+	ops += msort_b(aa, bb, bb_sz);
+	ops += merge_a(aa, bb, aa_sz, bb_sz);
+	return (ops);
+}
+
+int				msort_b(t_lst **aa, t_lst **bb, int sz)
+{
+	int		aa_sz;
+	int		bb_sz;
+	int		ops;
+
+	if (1 == sz)
+		return (0);
+	if (2 == sz)
+		return (base_case_b(aa, bb));
+	aa_sz = sz / 2;
+	bb_sz = sz - aa_sz;
+	ops = 0;
+	ops += push_a(aa, bb, aa_sz);
+	ops += msort_b(aa, bb, bb_sz);
+	ops += msort_a(aa, bb, aa_sz);
+	ops += merge_b(aa, bb, aa_sz, bb_sz);
 	return (ops);
 }
 
@@ -154,10 +176,7 @@ int				sort2(t_lst **aa, t_lst **bb)
 		ft_putstr("ra\n");
 		return (1);
 	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }
 
 int				sort3_case1(t_lst **aa, t_lst **bb)
@@ -241,6 +260,5 @@ int				sort(t_lst **aa, t_lst **bb)
 		return (sort2(aa, bb));
 	if (3 == sz)
 		return (sort3(aa, bb));
-	else
-		return (msort(aa, bb, sz, 'a'));
+	return (msort_a(aa, bb, sz));
 }
