@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:39:45 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/10 01:13:21 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/11 23:47:54 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void		dbg_print(t_lst *ll)
 {
 	t_lst	*beg;
 
-	beg = ll;
-	if (NULL == beg)
+	if (NULL == ll)
 		return ;
+	beg = ll;
 	while (true)
 	{
 		fprintf(stderr, "%d\n", *(int *)ll->dat);

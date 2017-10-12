@@ -232,6 +232,8 @@ int				sort(t_lst **aa, t_lst **bb)
 {
 	int		sz;
 
+	if (NULL == aa || NULL == *aa)
+		return (0);
 	sz = ft_lstsz(*aa);
 	if (1 == sz || 0 == sz)
 		return (0);

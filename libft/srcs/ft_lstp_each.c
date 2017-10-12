@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 18:10:25 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 18:10:25 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/11 23:46:36 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_bool		ft_lstp_each(t_lst *ll, t_bool (*pred)(t_lst *nod))
 {
 	t_lst	*beg;
 
+	if (NULL == ll)
+		return (true);
 	beg = ll;
 	while (true)
 	{

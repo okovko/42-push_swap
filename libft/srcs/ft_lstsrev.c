@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 23:29:10 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 19:46:47 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/11 23:45:44 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_lst	*ft_lstsrev(t_lst **ll)
 	t_lst	*prv;
 	t_lst	*nxt;
 
-	if (NULL == ll)
+	if (NULL == ll || NULL == *ll)
 		return (NULL);
 	beg = *ll;
 	cur = beg;

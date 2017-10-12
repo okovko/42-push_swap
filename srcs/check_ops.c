@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:40:04 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 16:15:34 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/11 23:49:01 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_bool		check_ops(t_lst *vals, t_lst *ops)
 	t_lst	*tmp;
 	t_lst	*beg;
 	
+	if (NULL == vals)
+		return (true);
 	tmp = NULL;
 	beg = ops;
 	while (true)
