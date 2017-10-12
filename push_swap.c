@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:29:22 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 16:31:06 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/11 20:17:08 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		main(int ac, char **av)
 {
 	int		op_sz;
 	t_lst	*vals;
+	t_lst	*aux;
 
 	op_sz = 0;
 	vals = NULL;
@@ -27,8 +28,9 @@ int		main(int ac, char **av)
 		ft_lstnfree(&vals, 1);
 		return (-1);
 	}
-	op_sz = sort(&vals);
-	ft_putstr("ops: ");
-	ft_putnbr(op_sz);
-	ft_putstr("\n");
+	op_sz = sort(&vals, &aux);
+	dbg_print(vals);
+	//ft_putstr("ops: ");
+	//ft_putnbr(op_sz);
+	//ft_putstr("\n");
 }

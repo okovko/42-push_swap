@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:21:29 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 19:38:46 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/11 20:22:16 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 void			op_rra(t_lst **a, t_lst **b)
 {
-	fprintf(stderr, "got here\n");
 	(void)b;
 	*a = (*a)->prv;
 }
