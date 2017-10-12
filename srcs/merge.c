@@ -33,7 +33,9 @@ int				merge_b_helper(t_lst **aa, t_lst **bb)
 int				merge_a(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 {
 	int		ops;
+	int		unwind;
 
+	unwind = a_sz + b_sz;
 	ops = 0;
 	while (a_sz > 0)
 	{
@@ -50,15 +52,24 @@ int				merge_a(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 			ops++;
 		}
 	}
-	while (b_sz-- > 0)
+	while (b_sz--)
 		ops += merge_a_helper(aa, bb);
+	if (unwind != ft_lstsz(*aa))
+		while (unwind--)
+		{
+			op_rra(aa, bb);
+			ft_putstr("rra\n");
+			ops++;
+		}
 	return (ops);
 }
 
 int				merge_b(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 {
 	int		ops;
+	int		unwind;
 
+	unwind = a_sz + b_sz;
 	ops = 0;
 	while (b_sz > 0)
 	{
@@ -75,8 +86,15 @@ int				merge_b(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 			ops++;
 		}
 	}
-	while (a_sz-- > 0)
+	while (a_sz--)
 		ops += merge_b_helper(aa, bb);
+	if (unwind != ft_lstsz(*bb))
+		while (unwind--)
+		{
+			op_rrb(aa, bb);
+			ft_putstr("rrb\n");
+			ops++;
+		}
 	return (ops);
 }
 
