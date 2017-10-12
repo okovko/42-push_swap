@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/08 15:45:17 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/11 17:05:44 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/11 23:23:49 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,22 @@ int				merge_a(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 	int		ops;
 
 	ops = 0;
-	if (ft_lstcmp_lli(*aa, *bb) < 0)
+	while (a_sz > 0)
 	{
-		ops += merge_a_helper(aa, bb);
-		b_sz--;
-	}
-	while (a_sz-- > 0)
-	{
-		if (NULL != *bb && ft_lstcmp_lli(*bb, *aa) < 0)
+		if (b_sz > 0 && ft_lstcmp_lli(*bb, *aa) < 0)
 		{
 			ops += merge_a_helper(aa, bb);
 			b_sz--;
 		}
 		else
 		{
+			a_sz--;
 			op_ra(aa, bb);
 			ft_putstr("ra\n");
 			ops++;
 		}
 	}
-	op_ra(aa, bb);
-	ft_putstr("ra\n");
-	if (b_sz-- > 0)
+	while (b_sz-- > 0)
 		ops += merge_a_helper(aa, bb);
 	return (ops);
 }
@@ -66,28 +60,22 @@ int				merge_b(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
 	int		ops;
 
 	ops = 0;
-	if (ft_lstcmp_lli(*aa, *bb) < 0)
+	while (b_sz > 0)
 	{
-		ops += merge_b_helper(aa, bb);
-		b_sz--;
-	}
-	while (a_sz-- > 0)
-	{
-		if (NULL != *bb && ft_lstcmp_lli(*bb, *aa) < 0)
+		if (a_sz > 0 && ft_lstcmp_lli(*bb, *aa) < 0)
 		{
 			ops += merge_b_helper(aa, bb);
-			b_sz--;
+			a_sz--;
 		}
 		else
 		{
+			b_sz--;
 			op_rb(aa, bb);
 			ft_putstr("rb\n");
 			ops++;
 		}
 	}
-	op_rb(aa, bb);
-	ft_putstr("rb\n");
-	if (b_sz-- > 0)
+	while (a_sz-- > 0)
 		ops += merge_b_helper(aa, bb);
 	return (ops);
 }
