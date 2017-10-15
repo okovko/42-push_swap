@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort2_ab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 17:29:22 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/12 20:14:57 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/13 02:23:32 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/14 20:58:44 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int ac, char **av)
+int				sort2_ab(t_lst **aa, t_lst **bb)
 {
-	int		op_sz;
-	t_lst	*vals;
-	t_lst	*aux;
+	int		cmp_a;
+	int		cmp_b;
 
-	op_sz = 0;
-	vals = NULL;
-	if (false == parse_vals(ac, av, &vals)
-		|| false == ft_lstp_each(vals, check_range)
-		|| false == ft_lstp_uniq(vals, ft_lstcmp_lli))
+	cmp_a = ft_lstcmp_lli(*aa, (*aa)->nxt);
+	cmp_b = ft_lstcmp_lli(*bb, (*bb)->nxt);
+	if (cmp_a < 0 && cmp_b < 0)
+		return (0);
+	if (cmp_a < 0 && cmp_b > 0)
 	{
-		ft_putstr_fd("Error\n", 2);
-		ft_lstnfree(&vals, 1);
-		return (-1);
+		op_sb(aa, bb);
+		ft_putstr("sb\n");
 	}
-	op_sz = sort(&vals, &aux);
-	dbg_print(vals);
-	ft_putstr("ops: ");
-	ft_putnbr(op_sz);
-	ft_putstr("\n");
+	if (cmp_a > 0 && cmp_b < 0)
+	{
+		op_sa(aa, bb);
+		ft_putstr("sa\n");
+	}
+	if (cmp_a > 0 && cmp_b > 0)
+	{
+		op_ss(aa, bb);
+		ft_putstr("ss\n");
+	}
+	return (1);
 }

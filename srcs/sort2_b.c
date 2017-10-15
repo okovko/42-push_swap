@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort2_b.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 17:29:22 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/12 20:14:57 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/13 03:32:42 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/15 03:53:17 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int ac, char **av)
+int				sort2_b(t_lst **aa, t_lst **bb)
 {
-	int		op_sz;
-	t_lst	*vals;
-	t_lst	*aux;
+	int		cmp_b;
+	int		ops;
 
-	op_sz = 0;
-	vals = NULL;
-	if (false == parse_vals(ac, av, &vals)
-		|| false == ft_lstp_each(vals, check_range)
-		|| false == ft_lstp_uniq(vals, ft_lstcmp_lli))
+	ops = 0;
+	cmp_b = ft_lstcmp_lli(*bb, (*bb)->nxt);
+	if (cmp_b > 0)
 	{
-		ft_putstr_fd("Error\n", 2);
-		ft_lstnfree(&vals, 1);
-		return (-1);
+		op_sb(aa, bb);
+		ft_putstr("sb\n");
+		ops++;
 	}
-	op_sz = sort(&vals, &aux);
-	dbg_print(vals);
-	ft_putstr("ops: ");
-	ft_putnbr(op_sz);
-	ft_putstr("\n");
+	op_rb(aa, bb);
+	op_rb(aa, bb);
+	ft_putstr("rb\n");
+	ft_putstr("rb\n");
+	ops += 2;
+	return (ops);
 }

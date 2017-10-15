@@ -6,9 +6,13 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/08 15:45:17 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/11 23:23:49 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/15 03:33:36 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+ * sort pass works, just make sure merge pass works, should be good then
+ */
 
 #include "push_swap.h"
 
@@ -30,112 +34,70 @@ int				merge_b_helper(t_lst **aa, t_lst **bb)
 	return (2);
 }
 
-int				merge_a(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
+int				merge_a(t_lst **aa, t_lst **bb, int sz)
 {
 	int		ops;
-	int		unwind;
+	int		ii;
+	int		jj;
 
-	unwind = a_sz + b_sz;
+	ii = 0;
+	jj = 0;
 	ops = 0;
-	while (a_sz > 0)
+	while (ii < sz && jj < sz)
 	{
-		if (b_sz > 0 && ft_lstcmp_lli(*bb, *aa) < 0)
+		if (ft_lstcmp_lli(*bb, *aa) < 0)
 		{
 			ops += merge_a_helper(aa, bb);
-			b_sz--;
+			ii++;
 		}
 		else
 		{
-			a_sz--;
 			op_ra(aa, bb);
 			ft_putstr("ra\n");
 			ops++;
+			jj++;
 		}
 	}
-	while (b_sz--)
+	while (ii++ < sz)
 		ops += merge_a_helper(aa, bb);
-	if (unwind != ft_lstsz(*aa))
-		while (unwind--)
-		{
-			op_rra(aa, bb);
-			ft_putstr("rra\n");
-			ops++;
-		}
 	return (ops);
 }
 
-int				merge_b(t_lst **aa, t_lst **bb, int a_sz, int b_sz)
+int				merge_b(t_lst **aa, t_lst **bb, int sz)
 {
 	int		ops;
-	int		unwind;
+	int		ii;
+	int		jj;
 
-	unwind = a_sz + b_sz;
+	ii = 0;
+	jj = 0;
 	ops = 0;
-	while (b_sz > 0)
+	while (ii < sz && jj < sz)
 	{
-		if (a_sz > 0 && ft_lstcmp_lli(*aa, *bb) < 0)
+		if (ft_lstcmp_lli(*aa, *bb) < 0)
 		{
 			ops += merge_b_helper(aa, bb);
-			a_sz--;
+			ii++;
 		}
 		else
 		{
-			b_sz--;
 			op_rb(aa, bb);
 			ft_putstr("rb\n");
 			ops++;
+			jj++;
 		}
 	}
-	while (a_sz--)
+	while (ii++ < sz)
 		ops += merge_b_helper(aa, bb);
-	if (unwind != ft_lstsz(*bb))
-		while (unwind--)
-		{
-			op_rrb(aa, bb);
-			ft_putstr("rrb\n");
-			ops++;
-		}
 	return (ops);
 }
 
-int				base_case_a(t_lst **aa, t_lst **bb)
-{
-	if (ft_lstcmp_lli(*aa, (*aa)->nxt) > 0)
-	{
-		op_sa(aa, bb);
-		ft_putstr("sa\n");
-	}
-	return (1);
-}
-
-int				base_case_b(t_lst **aa, t_lst **bb)
-{
-	if (ft_lstcmp_lli(*bb, (*bb)->nxt) > 0)
-	{
-		op_sb(aa, bb);
-		ft_putstr("sb\n");
-	}
-	return (1);
-}
-
-int				push_a(t_lst **aa, t_lst **bb, int sz)
+int				push_pass(t_lst **aa, t_lst **bb)
 {
 	int		ops;
+	int		sz;
 
-	ops = 0;
-	while (sz--)
-	{
-		op_pa(aa, bb);
-		ft_putstr("pa\n");
-		ops++;
-	}
-	return (ops);
-}
-
-int				push_b(t_lst **aa, t_lst **bb, int sz)
-{
-	int		ops;
-
+	sz = ft_lstsz(*aa) / 2;
 	ops = 0;
 	while (sz--)
 	{
@@ -146,123 +108,103 @@ int				push_b(t_lst **aa, t_lst **bb, int sz)
 	return (ops);
 }
 
-int				msort_a(t_lst **aa, t_lst **bb, int sz)
+int				sort_tips(t_lst **aa, t_lst **bb)
 {
-	int		aa_sz;
-	int		bb_sz;
+	int		tip_a;
+	int		tip_b;
 	int		ops;
 
-	if (1 == sz)
-		return (0);
-	if (2 == sz)
-		return (base_case_a(aa, bb));
-	bb_sz = sz / 2;
-	aa_sz = sz - bb_sz;
+	tip_a = ft_lstsz(*aa) % 3;
+	tip_b = ft_lstsz(*bb) % 3;
 	ops = 0;
-	ops += push_b(aa, bb, bb_sz);
-	ops += msort_a(aa, bb, aa_sz);
-	ops += msort_b(aa, bb, bb_sz);
-	ops += merge_a(aa, bb, aa_sz, bb_sz);
+	if (3 == tip_a)
+		ops += sort3_a(aa, bb);
+	if (3 == tip_b)
+		ops += sort3_b(aa, bb);
+	if (2 == tip_a && 2 == tip_b)
+		ops += sort2_ab(aa, bb);
+	else if (2 == tip_a)
+		ops += sort2_a(aa, bb);
+	else if (2 == tip_b)
+		ops += sort2_b(aa, bb);
+	if (1 == tip_a && 1 == tip_b)
+		ops += sort1_ab(aa, bb);
+	else if (1 == tip_a)
+		ops += sort1_a(aa, bb);
+	else if (1 == tip_b)
+		ops += sort1_b(aa, bb);
 	return (ops);
 }
 
-int				msort_b(t_lst **aa, t_lst **bb, int sz)
+int				sort_pass(t_lst **aa, t_lst **bb)
 {
-	int		aa_sz;
-	int		bb_sz;
 	int		ops;
+	int		ii;
+	int		jj;
+	int		a_sz;
+	int		b_sz;
 
-	if (1 == sz)
-		return (0);
-	if (2 == sz)
-		return (base_case_b(aa, bb));
-	aa_sz = sz / 2;
-	bb_sz = sz - aa_sz;
+	a_sz = ft_lstsz(*aa);
+	b_sz = ft_lstsz(*bb);
+	ii = 0;
+	jj = 0;
 	ops = 0;
-	ops += push_a(aa, bb, aa_sz);
-	ops += msort_b(aa, bb, bb_sz);
-	ops += msort_a(aa, bb, aa_sz);
-	ops += merge_b(aa, bb, aa_sz, bb_sz);
-	return (ops);
-}
-
-int				sort2(t_lst **aa, t_lst **bb)
-{
-	if (ft_lstcmp_lli(*aa, (*aa)->nxt) > 0)
+	while (ii + 3 <= a_sz && jj + 3 <= b_sz)
 	{
-		op_ra(aa, bb);
-		ft_putstr("ra\n");
-		return (1);
+		ops += sort3_ab(aa, bb);
+		ii += 3;
+		jj += 3;
 	}
-	return (0);
+	ops += sort_tips(aa, bb);
+	return (ops);
 }
 
-int				sort3_case1(t_lst **aa, t_lst **bb)
+int				merge_pass(t_lst **aa, t_lst **bb)
 {
-	(void)aa;
-	(void)bb;
-	return (0);
+	int		ops;
+	int		ii;
+	int		jj;
+	int		sz;
+	t_bool	merge_to_a;
+
+	merge_to_a = true;
+	ops = 0;
+	sz = 3;
+	while (sz <= ft_lstsz(*aa) && sz <= ft_lstsz(*bb))
+	{
+		ii = 0;
+		jj = 0;
+		while (ii + sz <= ft_lstsz(*aa) && jj + sz <= ft_lstsz(*bb))
+		{
+			if (merge_to_a)
+			{
+				ops += merge_a(aa, bb, sz);
+				merge_to_a = false;
+			}
+			else
+			{
+				merge_to_a = true;
+				ops += merge_b(aa, bb, sz);
+			}
+			ii += sz;
+			jj += sz;
+		}
+		ops += merge_b(aa, bb, sz + ft_lstsz(*aa) % sz);
+		sz *= 2;
+	}
+	ops += merge_a(aa, bb, ft_lstsz(*bb));
+	return (ops);
 }
 
-int				sort3_case2(t_lst **aa, t_lst **bb)
+int				msort(t_lst **aa, t_lst **bb)
 {
-	op_rra(aa, bb);
-	op_sa(aa, bb);
-	ft_putstr("rra\n");
-	ft_putstr("sa\n");
-	return (2);
-}
+	int		ops;
 
-int				sort3_case3(t_lst **aa, t_lst **bb)
-{
-	op_rra(aa, bb);
-	ft_putstr("rra\n");
-	return (1);
-}
-
-int				sort3_case4(t_lst **aa, t_lst **bb)
-{
-	op_sa(aa, bb);
-	ft_putstr("sa\n");
-	return (1);
-}
-
-int				sort3_case5(t_lst **aa, t_lst **bb)
-{
-	op_ra(aa, bb);
-	ft_putstr("ra\n");
-	return (1);
-}
-
-int				sort3_case6(t_lst **aa, t_lst **bb)
-{
-	op_ra(aa, bb);
-	op_sa(aa, bb);
-	ft_putstr("ra\n");
-	ft_putstr("sa\n");
-	return (2);
-}
-
-int				sort3(t_lst **aa, t_lst **bb)
-{
-	int		cmp1;
-	int		cmp2;
-
-	cmp1 = ft_lstcmp_lli(*aa, (*aa)->nxt);
-	cmp2 = ft_lstcmp_lli((*aa)->nxt, (*aa)->nxt->nxt);
-	if (cmp1 < 0 && cmp2 < 0)
-		return (sort3_case1(aa, bb));
-	if (cmp1 < 0 && cmp2 > 0 && ABS(cmp1) > ABS(cmp2))
-		return (sort3_case2(aa, bb));
-	if (cmp1 < 0 && cmp2 > 0 && ABS(cmp1) < ABS(cmp2))
-		return (sort3_case3(aa, bb));
-	if (cmp1 > 0 && cmp2 < 0 && ABS(cmp1) < ABS(cmp2))
-		return (sort3_case4(aa, bb));
-	if (cmp1 > 0 && cmp2 < 0 && ABS(cmp1) > ABS(cmp2))
-		return (sort3_case5(aa, bb));
-	if (cmp1 > 0 && cmp2 > 0)
-		return (sort3_case6(aa, bb));
-	return (0);
+	ops = 0;
+	ops += push_pass(aa, bb);
+	ops += sort_pass(aa, bb);
+	ops += merge_pass(aa, bb);
+	return (ops);
 }
 
 int				sort(t_lst **aa, t_lst **bb)
@@ -275,8 +217,8 @@ int				sort(t_lst **aa, t_lst **bb)
 	if (1 == sz || 0 == sz)
 		return (0);
 	if (2 == sz)
-		return (sort2(aa, bb));
+		return (sort2_a_small(aa, bb));
 	if (3 == sz)
-		return (sort3(aa, bb));
-	return (msort_a(aa, bb, sz));
+		return (sort3_a_small(aa, bb));
+	return (msort(aa, bb));
 }

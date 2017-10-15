@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort3_ab_312_123.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/05 17:29:22 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/12 20:14:57 by olkovale         ###   ########.fr       */
+/*   Created: 2017/10/13 00:36:17 by olkovale          #+#    #+#             */
+/*   Updated: 2017/10/13 00:36:17 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int ac, char **av)
+int				sort3_ab_312_123(t_lst **aa, t_lst **bb)
 {
-	int		op_sz;
-	t_lst	*vals;
-	t_lst	*aux;
-
-	op_sz = 0;
-	vals = NULL;
-	if (false == parse_vals(ac, av, &vals)
-		|| false == ft_lstp_each(vals, check_range)
-		|| false == ft_lstp_uniq(vals, ft_lstcmp_lli))
-	{
-		ft_putstr_fd("Error\n", 2);
-		ft_lstnfree(&vals, 1);
-		return (-1);
-	}
-	op_sz = sort(&vals, &aux);
-	dbg_print(vals);
-	ft_putstr("ops: ");
-	ft_putnbr(op_sz);
-	ft_putstr("\n");
+	(void)"312.. 123..";
+	op_sa(aa, bb);
+	(void)"132.. 123..";
+	ft_putstr("sa\n");
+	return (1 + sort3_ab_132_123(aa, bb));
 }
