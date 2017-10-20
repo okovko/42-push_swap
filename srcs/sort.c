@@ -20,6 +20,8 @@ int				sort(t_lst **aa, t_lst **bb)
 		return (0);
 	if (true == ft_lstp_sorted(*aa, ft_lstcmp_lli))
 		return (0);
+	if (true == ft_lstp_rot_sorted(*aa, ft_lstcmp_lli))
+		return (rot_pass(aa, bb));
 	sz = ft_lstsz(*aa);
 	if (1 == sz || 0 == sz)
 		return (0);
