@@ -34,6 +34,11 @@ static t_map		g_op_map =
 	.kvs = g_op_kvs,
 };
 
+static t_bool		is_space(char cc)
+{
+	return (ISSPACE(cc));
+}
+
 t_bool				parse_ops(t_lst **ops)
 {
 	char		*ss;
@@ -43,6 +48,8 @@ t_bool				parse_ops(t_lst **ops)
 	*ops = NULL;
 	while (get_next_line(1, &ss) > 0)
 	{
+		if (false == ft_strp_each(ss, is_space))
+			return (false);
 		kv = ft_mapget(&g_op_map, (void *)ss, ft_map_keycmp_str);
 		if (NULL == kv)
 			return (false);

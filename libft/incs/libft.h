@@ -93,6 +93,7 @@ int					ft_strncmp(const char *s1, const char *s2, int sz);
 int					ft_strspn(const char *ss, const char *dlm);
 int					ft_strcspn(const char *ss, const char *dlm);
 char				*ft_strpbrk(const char *ss, const char *dlm);
+t_bool				ft_strp_each(char *ss, t_bool (*pp)(char));
 char				*ft_strtok(char *ss, const char *dlm);
 char				*ft_strtokbeg(const char *ss, const char *dlm);
 int					ft_strtokamt(const char *ss, const char *dlm);
