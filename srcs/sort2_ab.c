@@ -6,11 +6,20 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 02:23:32 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/14 20:58:44 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 12:11:59 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int		rot2_ab(t_lst **aa, t_lst **bb)
+{
+	op_rr(aa, bb);
+	op_rr(aa, bb);
+	ft_putstr("rr\n");
+	ft_putstr("rr\n");
+	return (2);
+}
 
 int				sort2_ab(t_lst **aa, t_lst **bb)
 {
@@ -36,5 +45,6 @@ int				sort2_ab(t_lst **aa, t_lst **bb)
 		op_ss(aa, bb);
 		ft_putstr("ss\n");
 	}
-	return (1);
+	rot2_ab(aa, bb);
+	return (3);
 }
