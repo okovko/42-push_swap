@@ -21,9 +21,9 @@ int				sort_tips(t_lst **aa, t_lst **bb)
 	tip_a = ft_lstsz(*aa) % 3;
 	tip_b = ft_lstsz(*bb) % 3;
 	ops = 0;
-	if (3 == tip_a)
+	if (0 == tip_a && tip_b)
 		ops += sort3_a(aa, bb);
-	if (3 == tip_b)
+	if (0 == tip_b && tip_a)
 		ops += sort3_b(aa, bb);
 	if (2 == tip_a && 2 == tip_b)
 		ops += sort2_ab(aa, bb);
