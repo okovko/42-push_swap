@@ -20,9 +20,9 @@ int				merge_a_outer(t_lst **aa, t_lst **bb, int sz)
 	t_lst	*max;
 
 	min = ft_lstmin2(ft_lstmin(*aa, ft_lstcmp_lli),
-					 ft_lstmin(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
+					ft_lstmin(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
 	max = ft_lstmax2(ft_lstmax(*aa, ft_lstcmp_lli),
-					 ft_lstmax(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
+					ft_lstmax(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
 	ii = 0;
 	ops = 0;
 	while (ii < sz)

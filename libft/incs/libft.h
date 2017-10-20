@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 11:29:19 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/12 20:20:25 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 11:02:52 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,13 @@ t_lst				*ft_lstmsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmin2(t_lst *nod1, t_lst *nod2,
 								int (*cmp)(t_lst *a, t_lst *b));
-t_lst				*ft_lstnmin(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b), int sz);
+t_lst				*ft_lstnmin(t_lst *ll,
+								int (*cmp)(t_lst *a, t_lst *b), int sz);
 t_lst				*ft_lstmax(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstmax2(t_lst *nod1, t_lst *nod2,
 								int (*cmp)(t_lst *a, t_lst *b));
-t_lst				*ft_lstnmax(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b), int sz);
+t_lst				*ft_lstnmax(t_lst *ll,
+								int (*cmp)(t_lst *a, t_lst *b), int sz);
 t_lst				*ft_lstlgt(t_lst *ll, t_lst *nod,
 								int (*cmp)(t_lst *a, t_lst *b));
 t_lst				*ft_lstglt(t_lst *ll, t_lst *nod,
@@ -168,7 +170,8 @@ t_lst				*ft_lstswp(t_lst **ll);
 t_bool				ft_lstp_each(t_lst *ll, t_bool (*pred)(t_lst *nod));
 t_bool				ft_lstp_uniq(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
 t_bool				ft_lstp_sorted(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
-t_bool				ft_lstp_rot_sorted(t_lst *ll, int (*cmp)(t_lst *a, t_lst *b));
+t_bool				ft_lstp_rot_sorted(t_lst *ll,
+										int (*cmp)(t_lst *a, t_lst *b));
 int					ft_lstcmp_lli(t_lst *a, t_lst *b);
 int					ft_lstsz(t_lst *ll);
 int					ft_nbrlen(int val);

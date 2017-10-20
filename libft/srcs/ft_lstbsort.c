@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 02:21:35 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/13 02:21:35 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 11:01:00 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static t_lst	*bsort(t_lst *itr, int (*cmp)(t_lst *a, t_lst *b))
 
 t_lst			*ft_lstbsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b))
 {
-
 	if (NULL == ll || NULL == *ll || NULL == cmp)
 		return (NULL);
 	if (*ll == (*ll)->nxt)

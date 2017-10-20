@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:40:21 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/07 15:53:29 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 10:59:16 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ t_bool				parse_ops(t_lst **ops)
 		ft_lstadd(ops, ft_lstnew(&op, sizeof(op)));
 	}
 	ft_lstsrev(ops);
-	// remove the single line below later
-	dbg_print(*ops);
 	return (true);
 }

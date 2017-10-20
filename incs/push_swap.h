@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include "libft.h"
 
 typedef void	(*t_op_fp)(t_lst **, t_lst **);
 
@@ -135,3 +138,5 @@ int				rot_pass(t_lst **aa, t_lst **bb);
 int				push_pass(t_lst **aa, t_lst **bb);
 int				sort_pass(t_lst **aa, t_lst **bb);
 int				sort_tips(t_lst **aa, t_lst **bb);
+
+#endif

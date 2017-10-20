@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:37:51 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 17:37:51 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 10:59:45 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		ft_strtoi(const char *ss, char **edg)
 	neg = cc == '-';
 	ss += cc == '-' || cc == '+';
 	neg_num = 0;
-	dig = (cc = *ss) && ISDIGIT(cc);
+	cc = *ss;
+	dig = ISDIGIT(cc);
 	while ((cc = *ss) && ISDIGIT(cc))
 	{
 		neg_num = neg_num * 10 - cc + '0';

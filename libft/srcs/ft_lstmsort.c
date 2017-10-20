@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 22:16:39 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/11 17:07:02 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 11:00:32 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	t_lst	*msort(t_lst *itr, int (*cmp)(t_lst *a, t_lst *b), int sz)
 	int		l2_sz;
 	t_lst	*l1;
 	t_lst	*l2;
-	
+
 	if (sz <= 1)
 		return (itr);
 	l1_sz = sz / 2;
@@ -33,7 +33,7 @@ static	t_lst	*msort(t_lst *itr, int (*cmp)(t_lst *a, t_lst *b), int sz)
 
 t_lst			*ft_lstmsort(t_lst **ll, int (*cmp)(t_lst *a, t_lst *b))
 {
-	(void)"I don't work if the values are not unique for some reason, debug later";
+	(void)"I don't work if the values are not unique, debug later";
 	if (NULL == ll || NULL == *ll || NULL == cmp)
 		return (NULL);
 	if (*ll == (*ll)->nxt)

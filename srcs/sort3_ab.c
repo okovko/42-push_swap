@@ -133,12 +133,6 @@ int				sort3_ab(t_lst **aa, t_lst **bb)
 	int		cmp_b1;
 	int		cmp_b2;
 
-	/*
-	if (*(int *)(*bb)->nxt->dat == 136)
-		printf("a1 = %d, a2 = %d, a3 = %d, b1 = %d, b2 = %d, b3 = %d\n",
-				*(int *)(*aa)->dat, *(int *)(*aa)->nxt->dat, *(int *)(*aa)->nxt->nxt->dat,
-				*(int *)(*bb)->dat, *(int *)(*bb)->nxt->dat, *(int *)(*bb)->nxt->nxt->dat);
-	*/
 	cmp_a1 = ft_lstcmp_lli(*aa, (*aa)->nxt);
 	cmp_a2 = ft_lstcmp_lli((*aa)->nxt, (*aa)->nxt->nxt);
 	cmp_b1 = ft_lstcmp_lli(*bb, (*bb)->nxt);
