@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "push_swap.h"
 
 static t_op_fp	g_op[] = (t_op_fp[])
@@ -44,10 +42,6 @@ t_bool		check_ops(t_lst *vals, t_lst *ops)
 	{
 		op = *(int *)ops->dat;
 		g_op[op](&vals, &tmp);
-		fprintf(stderr, "printing a\n");
-		dbg_print(vals);
-		fprintf(stderr, "printing b\n");
-		dbg_print(tmp);
 		if (E_PS_OP_NONE == op)
 			return (false);
 		ops = ops->nxt;

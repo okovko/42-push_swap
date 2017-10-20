@@ -16,7 +16,6 @@ t_bool		ft_strp_each(char *ss, t_bool (*pp)(char))
 {
 	char	cc;
 
-	ft_putstr("got here\n");
 	if (NULL == ss || NULL == pp)
 		return (true);
 	while ((cc = *ss))
@@ -24,6 +23,5 @@ t_bool		ft_strp_each(char *ss, t_bool (*pp)(char))
 			return (false);
 		else
 			ss++;
-	ft_putstr("got here\n");
 	return (true);
 }
