@@ -19,7 +19,7 @@ t_bool		ft_strp_each(char *ss, t_bool (*pp)(char))
 	if (NULL == ss || NULL == pp)
 		return (true);
 	while ((cc = *ss))
-		if (true == pp(cc))
+		if (false == pp(cc))
 			return (false);
 		else
 			ss++;

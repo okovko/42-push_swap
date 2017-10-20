@@ -46,9 +46,9 @@ t_bool				parse_ops(t_lst **ops)
 	int			op;
 
 	*ops = NULL;
-	while (get_next_line(1, &ss) > 0)
+	while (get_next_line(0, &ss) > 0)
 	{
-		if (false == ft_strp_each(ss, is_space))
+		if (true == ft_strp_each(ss, is_space))
 			return (false);
 		kv = ft_mapget(&g_op_map, (void *)ss, ft_map_keycmp_str);
 		if (NULL == kv)
