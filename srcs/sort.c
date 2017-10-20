@@ -18,6 +18,8 @@ int				sort(t_lst **aa, t_lst **bb)
 
 	if (NULL == aa || NULL == *aa)
 		return (0);
+	if (true == ft_lstp_sorted(*aa, ft_lstcmp_lli))
+		return (0);
 	sz = ft_lstsz(*aa);
 	if (1 == sz || 0 == sz)
 		return (0);
