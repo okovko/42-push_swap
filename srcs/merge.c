@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/08 15:45:17 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/18 19:49:44 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 09:03:46 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,18 @@ int				merge_a_outer(t_lst **aa, t_lst **bb, int sz)
 {
 	int		ops;
 	int		ii;
+	t_lst	*min;
 
 	ii = 0;
 	ops = 0;
+	min = ft_lstmin2(ft_lstmin(*aa, ft_lstcmp_lli), ft_lstmin(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
 	while (ii < sz)
 	{
+		if (min == *bb)
+		{
+			ops += merge_a_put(aa, bb);
+			ii++;
+		}
 		if (ft_lstcmp_lli(*bb, (*aa)->prv) > 0 && ft_lstcmp_lli(*bb, *aa) < 0)
 		{
 			ops += merge_a_put(aa, bb);
@@ -244,12 +251,21 @@ int				merge_inner(t_lst **aa, t_lst **bb, int sz)
 
 int				merge_outer(t_lst **aa, t_lst **bb, int sz)
 {
+	int		ii;
+	int		jj;
 	int		a_outer_sz;
+	int		b_outer_sz;
 	int		ops;
 
 	ops = 0;
+	ii = 0;
+	jj = 0;
 	a_outer_sz = ft_lstsz(*aa) % (sz * 2);
-	ops += merge_b_inner(aa, bb, a_outer_sz);
+	while (ii++ < a_outer_sz)
+		ops += merge_b_put(aa, bb);
+	b_outer_sz = ft_lstsz(*bb) % (sz * 2) - a_outer_sz;
+	while (jj++ < b_outer_sz)
+		ops += merge_b_rot(aa, bb);
 	return (ops);
 }
 
@@ -267,9 +283,7 @@ int				merge_pass(t_lst **aa, t_lst **bb)
 		sz *= 2;
 	}
 	while (ft_lstsz(*bb) > 0)
-	{
 		ops += merge_a_outer(aa, bb, 1);
-	}
 	return (ops);
 }
 

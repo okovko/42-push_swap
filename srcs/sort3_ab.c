@@ -6,9 +6,11 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 20:25:21 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/15 03:38:03 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 10:27:10 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 #include "push_swap.h"
 
@@ -131,6 +133,12 @@ int				sort3_ab(t_lst **aa, t_lst **bb)
 	int		cmp_b1;
 	int		cmp_b2;
 
+	/*
+	if (*(int *)(*bb)->nxt->dat == 136)
+		printf("a1 = %d, a2 = %d, a3 = %d, b1 = %d, b2 = %d, b3 = %d\n",
+				*(int *)(*aa)->dat, *(int *)(*aa)->nxt->dat, *(int *)(*aa)->nxt->nxt->dat,
+				*(int *)(*bb)->dat, *(int *)(*bb)->nxt->dat, *(int *)(*bb)->nxt->nxt->dat);
+	*/
 	cmp_a1 = ft_lstcmp_lli(*aa, (*aa)->nxt);
 	cmp_a2 = ft_lstcmp_lli((*aa)->nxt, (*aa)->nxt->nxt);
 	cmp_b1 = ft_lstcmp_lli(*bb, (*bb)->nxt);
