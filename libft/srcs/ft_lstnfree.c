@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 23:10:23 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 21:56:29 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 13:06:35 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_lst	*ft_lstnfree(t_lst **ll, int dpth)
 	if (NULL == ll)
 		return (NULL);
 	beg = *ll;
-	while (beg != *ll)
+	while (true)
 	{
 		if (dpth > 1)
 			ft_lstnfree((t_lst **)&((*ll)->dat), dpth - 1);
@@ -31,6 +31,8 @@ t_lst	*ft_lstnfree(t_lst **ll, int dpth)
 		tmp = *ll;
 		*ll = (*ll)->nxt;
 		free(tmp);
+		if (*ll == beg)
+			break ;
 	}
 	*ll = NULL;
 	return (NULL);
