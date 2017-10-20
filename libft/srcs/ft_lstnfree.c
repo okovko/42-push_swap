@@ -22,7 +22,7 @@ t_lst	*ft_lstnfree(t_lst **ll, int dpth)
 	if (NULL == ll)
 		return (NULL);
 	beg = *ll;
-	while (true)
+	while (NULL != beg)
 	{
 		if (dpth > 1)
 			ft_lstnfree((t_lst **)&((*ll)->dat), dpth - 1);
