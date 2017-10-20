@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 18:36:34 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/15 03:34:15 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 10:51:46 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,3 +121,17 @@ t_bool			is_312(int cmp1, int cmp2);
 t_bool			is_321(int cmp1, int cmp2);
 int				sort(t_lst **aa, t_lst **bb);
 int				msort(t_lst **aa, t_lst **bb);
+int				merge_pass(t_lst **aa, t_lst **bb);
+int				merge_outer(t_lst **aa, t_lst **bb, int sz);
+int				merge_inner(t_lst **aa, t_lst **bb, int sz);
+int				merge_a_outer(t_lst **aa, t_lst **bb, int sz);
+int				merge_b_inner(t_lst **aa, t_lst **bb, int sz);
+int				merge_a_inner(t_lst **aa, t_lst **bb, int sz);
+int				merge_b_rot(t_lst **aa, t_lst **bb);
+int				merge_a_rot(t_lst **aa, t_lst **bb);
+int				merge_b_put(t_lst **aa, t_lst **bb);
+int				merge_a_put(t_lst **aa, t_lst **bb);
+int				rot_pass(t_lst **aa, t_lst **bb);
+int				push_pass(t_lst **aa, t_lst **bb);
+int				sort_pass(t_lst **aa, t_lst **bb);
+int				sort_tips(t_lst **aa, t_lst **bb);
