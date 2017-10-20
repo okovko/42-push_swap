@@ -38,7 +38,7 @@ t_bool		check_ops(t_lst *vals, t_lst *ops)
 		return (true);
 	tmp = NULL;
 	beg = ops;
-	while (true)
+	while (NULL != beg)
 	{
 		op = *(int *)ops->dat;
 		g_op[op](&vals, &tmp);
