@@ -20,6 +20,7 @@ int		main(int ac, char **av)
 
 	op_sz = 0;
 	vals = NULL;
+	aux = NULL;
 	if (false == parse_vals(ac, av, &vals)
 		|| false == ft_lstp_each(vals, check_range)
 		|| false == ft_lstp_uniq(vals, ft_lstcmp_lli))
