@@ -36,5 +36,5 @@ int				sort3_ab_321_231(t_lst **aa, t_lst **bb)
 	ft_putstr("rr\n");
 	ft_putstr("rr\n");
 	ft_putstr("rr\n");
-	return (7);
+	return (8);
 }

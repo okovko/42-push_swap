@@ -23,9 +23,10 @@ int				sort3_ab_312_123(t_lst **aa, t_lst **bb)
 	(void)"23..1 23..1";
 	op_rr(aa, bb);
 	op_rr(aa, bb);
+	ft_putstr("sa\n");
 	ft_putstr("rr\n");
 	ft_putstr("sa\n");
 	ft_putstr("rr\n");
 	ft_putstr("rr\n");
-	return (4);
+	return (5);
 }

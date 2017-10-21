@@ -23,6 +23,9 @@ int				sort3_ab_231_132(t_lst **aa, t_lst **bb)
 	(void)"213.. 123..";
 	op_sa(aa, bb);
 	(void)"123.. 123..";
+	op_rr(aa, bb);
+	op_rr(aa, bb);
+	op_rr(aa, bb);
 	ft_putstr("rr\n");
 	ft_putstr("ss\n");
 	ft_putstr("rrr\n");

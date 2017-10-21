@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/13 02:23:32 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/20 12:11:59 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:34:15 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int				sort2_ab(t_lst **aa, t_lst **bb)
 
 	cmp_a = ft_lstcmp_lli(*aa, (*aa)->nxt);
 	cmp_b = ft_lstcmp_lli(*bb, (*bb)->nxt);
-	if (cmp_a < 0 && cmp_b < 0)
-		return (0);
 	if (cmp_a < 0 && cmp_b > 0)
 	{
 		op_sb(aa, bb);

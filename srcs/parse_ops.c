@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 #include "push_swap.h"
 
 static t_map_kv		g_op_kvs[] = (t_map_kv[])
@@ -56,11 +58,15 @@ t_bool				parse_ops(t_lst **ops)
 	*ops = NULL;
 	while (get_next_line(0, &ss) > 0)
 	{
+		printf("line = %s\n", ss);
 		if (true == ft_strp_each(ss, is_space))
 			return (false);
 		kv = ft_mapget(&g_op_map, (void *)ss, op_cmp);
 		if (NULL == kv)
+		{
+			printf("false because kv not found\n");
 			return (false);
+		}
 		op = *(int *)kv->val;
 		ft_lstadd(ops, ft_lstnew(&op, sizeof(op)));
 	}

@@ -15,24 +15,26 @@
 int				sort3_ab_312_321(t_lst **aa, t_lst **bb)
 {
 	(void)"312.. 321..";
-	op_sa(aa, bb);
-	(void)"132.. 321..";
-	op_pa(aa, bb);
-	(void)"3132.. 21..";
 	op_ss(aa, bb);
-	(void)"1332.. 12..";
+	(void)"132.. 231..";
 	op_rr(aa, bb);
-	(void)"332..1 2..1";
-	op_pa(aa, bb);
-	(void)"32..1 32..1";
+	(void)"32..1 31..2";
+	op_ss(aa, bb);
+	(void)"23..1 13..2";
+	op_rrr(aa, bb);
+	(void)"123.. 213..";
+	op_sb(aa, bb);
+	(void)"123.. 123..";
 	op_rr(aa, bb);
 	op_rr(aa, bb);
-	ft_putstr("sa\n");
-	ft_putstr("pa\n");
+	op_rr(aa, bb);
 	ft_putstr("ss\n");
 	ft_putstr("rr\n");
-	ft_putstr("pa\n");
+	ft_putstr("ss\n");
+	ft_putstr("rrr\n");
+	ft_putstr("sb\n");
 	ft_putstr("rr\n");
 	ft_putstr("rr\n");
-	return (7);
+	ft_putstr("rr\n");
+	return (8);
 }
