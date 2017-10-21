@@ -28,7 +28,7 @@ int		main(int ac, char **av)
 		ft_lstnfree(&vals, 1);
 	}
 	op_sz = sort(&vals, &aux);
-	dbg_print(vals);
+	//dbg_print(vals);
 	ft_lstnfree(&vals, 1);
 	return (0);
 }

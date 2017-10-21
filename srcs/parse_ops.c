@@ -58,13 +58,13 @@ t_bool				parse_ops(t_lst **ops)
 	*ops = NULL;
 	while (get_next_line(0, &ss) > 0)
 	{
-		printf("line = %s\n", ss);
+		//printf("line = %s\n", ss);
 		if (true == ft_strp_each(ss, is_space))
 			return (false);
 		kv = ft_mapget(&g_op_map, (void *)ss, op_cmp);
 		if (NULL == kv)
 		{
-			printf("false because kv not found\n");
+			//printf("false because kv not found\n");
 			return (false);
 		}
 		op = *(int *)kv->val;

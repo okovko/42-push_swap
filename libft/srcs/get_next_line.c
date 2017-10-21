@@ -3,70 +3,108 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mzaneri <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/13 12:17:19 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/05 23:14:02 by olkovale         ###   ########.fr       */
+/*   Created: 2017/06/25 13:40:51 by mzaneri           #+#    #+#             */
+/*   Updated: 2017/10/20 23:14:39 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 
 #include "libft.h"
 
-static int		get_next_scan(char **scan, char *buf)
+static char	*join_then_free(char *buf, char *store)
 {
-	size_t	len;
-	char	*start;
-	char	*end;
+	char		*ret;
 
-	free(*scan);
-	*scan = NULL;
-	if (NULL == (start = ft_memcchr(buf, '\0', BUFF_SIZE)))
-		return (-1);
-	end = ft_memchr(buf, '\n', BUFF_SIZE);
-	len = NULL == end ? BUFF_SIZE - (start - buf) : end - start;
-	*scan = ft_strbuf(start, len);
-	ft_memset(start, '\0', len + 1);
-	return (NULL != end);
+	ret = ft_strjoin(buf, store);
+	ft_strdel(&buf);
+	return (ret);
 }
 
-static char		*append_to_line(char **line, char *scan)
+static char	*truncate_to_newline(char *buf)
 {
-	char	*tmp;
+	char		*finish;
+	size_t		i;
+	size_t		j;
 
-	tmp = *line;
-	*line = NULL == tmp ? ft_strdup(scan) : ft_strjoin(tmp, scan);
-	free(tmp);
-	return (*line);
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	static char		buf[FD_MAX][BUFF_SIZE];
-	char			*scan;
-	int				scan_info;
-	ssize_t			ret;
-
-	if (BUFF_SIZE < 1 || NULL == line || fd < 0 || read(fd, buf[fd], 0) < 0)
-		return (-1);
-	*line = NULL;
-	scan = NULL;
-	while (1)
+	i = 0;
+	j = 0;
+	while (*(buf + i) && (*(buf + i) != '\n'))
+		i++;
+	finish = (char *)malloc(sizeof(char) * (i + 1));
+	if (!finish)
+		return (NULL);
+	while (j < i)
 	{
-		scan_info = get_next_scan(&scan, buf[fd]);
-		if (scan_info == -1)
-		{
-			if ((ret = read(fd, buf[fd], BUFF_SIZE)) <= 0)
-				break ;
-			continue ;
-		}
-		append_to_line(line, scan);
-		if (scan_info == 1)
+		*(finish + j) = *(buf + j);
+		j++;
+	}
+	*(finish + j) = '\0';
+	return (finish);
+}
+
+char		*norm_nonsense(char **buf)
+{
+	ft_strdel(buf);
+	return (NULL);
+}
+
+static char	*copy_after_newline(char *buf)
+{
+	char		*temp;
+	char		*finish;
+	size_t		i;
+
+	i = 0;
+	if (!(temp = ft_strchr(buf, '\n')))
+		return (norm_nonsense(&buf));
+	temp++;
+	while (*(temp + i))
+		i++;
+	finish = (char*)malloc(sizeof(char) * (i + 1));
+	if (!finish)
+	{
+		ft_strdel(&buf);
+		return (NULL);
+	}
+	i = 0;
+	while (*(temp + i))
+	{
+		*(finish + i) = *(temp + i);
+		i++;
+	}
+	*(finish + i) = '\0';
+	ft_strdel(&buf);
+	return (finish);
+}
+
+int			get_next_line(int const fd, char **line)
+{
+	static char	*fds_arry[1024];
+	char		store[BUFF_SIZE + 1];
+	int			val;
+
+	if (fd < 0 || !line || read(fd, store, 0) < 0 || BUFF_SIZE < 1)
+		return (-1);
+	if (!fds_arry[fd % 1024])
+		fds_arry[fd % 1024] = ft_strnew(1);
+	val = 0;
+	while (!(ft_strchr(fds_arry[fd % 1024], '\n')))
+	{
+		val = read(fd, store, BUFF_SIZE);
+		if (val < 0)
+			return (-1);
+		store[val] = '\0';
+		fds_arry[fd % 1024] = join_then_free(fds_arry[fd % 1024], store);
+		if ((val == 0) && (*fds_arry[fd % 1024] == '\0'))
+			return (0);
+		if (val == 0)
 			break ;
 	}
-	free(scan);
-	return (ret != -1 && NULL != *line ? 1 : ret);
+	*line = truncate_to_newline(fds_arry[fd % 1024]);
+	fds_arry[fd % 1024] = copy_after_newline(fds_arry[fd % 1024]);
+	return (1);
 }
