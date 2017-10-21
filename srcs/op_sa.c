@@ -18,6 +18,8 @@ void			op_sa(t_lst **a, t_lst **b)
 	t_lst		*scnd;
 	void		*tmp;
 
+	if (NULL == *a)
+		return ;
 	(void)b;
 	frst = *a;
 	scnd = frst->nxt;

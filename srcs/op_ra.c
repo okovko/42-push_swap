@@ -15,5 +15,7 @@
 void			op_ra(t_lst **a, t_lst **b)
 {
 	(void)b;
+	if (NULL == *a)
+		return ;
 	*a = (*a)->nxt;
 }
