@@ -29,7 +29,6 @@ int			main(int ac, char **av)
 		ft_putstr("KO\n");
 	else
 		ft_putstr("OK\n");
-	//dbg_print(vals);
 	ft_lstnfree(&vals, 1);
 	ft_lstnfree(&ops, 1);
 	return (0);

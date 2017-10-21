@@ -40,29 +40,9 @@ t_bool		check_ops(t_lst *vals, t_lst *ops)
 		return (true);
 	tmp = NULL;
 	beg = ops;
-	//printf("\n===============\n");
 	while (NULL != beg)
 	{
 		op = *(int *)ops->dat;
-		/*
-		if (op == E_PS_OP_NONE) printf("op_error\n");
-		if (op == E_PS_OP_SA) printf("sa\n");
-		if (op == E_PS_OP_SB) printf("sb\n");
-		if (op == E_PS_OP_SS) printf("ss\n");
-		if (op == E_PS_OP_PA) printf("pa\n");
-		if (op == E_PS_OP_PB) printf("pb\n");
-		if (op == E_PS_OP_RA) printf("ra\n");
-		if (op == E_PS_OP_RB) printf("rb\n");
-		if (op == E_PS_OP_RR) printf("rr\n");
-		if (op == E_PS_OP_RRA) printf("rra\n");
-		if (op == E_PS_OP_RRB) printf("rrb\n");
-		if (op == E_PS_OP_RRR) printf("rrr\n");
-		printf("A\n");
-		dbg_print(vals);
-		printf("\nB\n");
-		dbg_print(tmp);
-		printf("\n\n");
-		*/
 		g_op[op](&vals, &tmp);
 		if (E_PS_OP_NONE == op)
 			return (false);

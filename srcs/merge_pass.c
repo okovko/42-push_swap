@@ -14,6 +14,7 @@
 
 int				merge_pass(t_lst **aa, t_lst **bb)
 {
+	int		crap_ops;
 	int		ops;
 	int		sz;
 
@@ -25,7 +26,8 @@ int				merge_pass(t_lst **aa, t_lst **bb)
 		ops += merge_outer(aa, bb, sz);
 		sz *= 2;
 	}
+	crap_ops = 0;
 	while (ft_lstsz(*bb) > 0)
-		ops += merge_a_outer(aa, bb, 1);
-	return (ops);
+		crap_ops += merge_a_outer(aa, bb, 1);
+	return (crap_ops + ops);
 }
