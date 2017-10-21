@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 22:46:59 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/20 10:20:49 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 17:05:45 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int				sort3_ab_132_132(t_lst **aa, t_lst **bb)
 	op_ss(aa, bb);
 	(void)"23..1 23..1";
 	op_rr(aa, bb);
-	(void)"3..12 3..12";
 	op_rr(aa, bb);
-	(void)"..123 ..123";
 	ft_putstr("rr\n");
 	ft_putstr("ss\n");
 	ft_putstr("rr\n");

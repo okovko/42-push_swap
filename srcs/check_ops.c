@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 13:40:04 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/11 23:49:01 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:20:05 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,24 @@ t_bool		check_ops(t_lst *vals, t_lst *ops)
 	while (NULL != beg)
 	{
 		op = *(int *)ops->dat;
+		if (op == E_PS_OP_NONE) printf("op_error\n");
+		if (op == E_PS_OP_SA) printf("sa\n");
+		if (op == E_PS_OP_SB) printf("sb\n");
+		if (op == E_PS_OP_SS) printf("ss\n");
+		if (op == E_PS_OP_PA) printf("pa\n");
+		if (op == E_PS_OP_PB) printf("pb\n");
+		if (op == E_PS_OP_RA) printf("ra\n");
+		if (op == E_PS_OP_RB) printf("rb\n");
+		if (op == E_PS_OP_RR) printf("rr\n");
+		if (op == E_PS_OP_RRA) printf("rra\n");
+		if (op == E_PS_OP_RRB) printf("rrb\n");
+		if (op == E_PS_OP_RRR) printf("rrr\n");
 		g_op[op](&vals, &tmp);
+		printf("A\n");
+		dbg_print(vals);
+		printf("\nB\n");
+		dbg_print(tmp);
+		printf("\n\n");
 		if (E_PS_OP_NONE == op)
 			return (false);
 		ops = ops->nxt;

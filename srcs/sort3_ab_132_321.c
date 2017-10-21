@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 23:58:52 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/20 10:58:29 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 17:11:38 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,21 @@
 int				sort3_ab_132_321(t_lst **aa, t_lst **bb)
 {
 	(void)"132.. 321..";
-	op_sb(aa, bb);
-	(void)"132.. 231..";
-	op_rr(aa, bb);
-	(void)"32..1 31..2";
+	op_pa(aa, bb);
+	(void)"3132.. 21..";
 	op_ss(aa, bb);
-	(void)"23..1 13..2";
-	op_rrr(aa, bb);
-	(void)"123.. 213..";
-	op_sb(aa, bb);
-	(void)"123.. 123..";
+	(void)"1332.. 12..";
 	op_rr(aa, bb);
-	(void)"23..1 23..1";
+	(void)"332..1 2..1";
+	op_pa(aa, bb);
+	(void)"32..1 32..1";
 	op_rr(aa, bb);
-	(void)"3..12 3..12";
 	op_rr(aa, bb);
-	(void)"..123 ..123";
-	ft_putstr("sb\n");
-	ft_putstr("rr\n");
+	ft_putstr("pa\n");
 	ft_putstr("ss\n");
-	ft_putstr("rrr\n");
-	ft_putstr("sb\n");
 	ft_putstr("rr\n");
-	ft_putstr("rr\nrr\n");
-	return (8);
+	ft_putstr("pa\n");
+	ft_putstr("rr\n");
+	ft_putstr("rr\n");
+	return (6);
 }

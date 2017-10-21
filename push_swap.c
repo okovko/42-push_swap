@@ -6,7 +6,7 @@
 /*   By: olkovale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 17:29:22 by olkovale          #+#    #+#             */
-/*   Updated: 2017/10/20 14:15:53 by olkovale         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:11:00 by olkovale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		main(int ac, char **av)
 		ft_lstnfree(&vals, 1);
 	}
 	op_sz = sort(&vals, &aux);
+	dbg_print(vals);
 	ft_lstnfree(&vals, 1);
 	return (0);
 }

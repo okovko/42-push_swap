@@ -18,9 +18,8 @@ static int		merge_a_min(t_lst **aa, t_lst **bb)
 	t_lst	*min;
 
 	ops = 0;
-	min = ft_lstmin2(ft_lstmin(*aa, ft_lstcmp_lli),
-					ft_lstmin(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
-	if (min == *bb)
+	min = ft_lstmin(*aa, ft_lstcmp_lli);
+	if (min == *aa && ft_lstcmp_lli(*bb, min) < 0)
 		ops += merge_a_put(aa, bb);
 	return (ops);
 }
@@ -31,12 +30,10 @@ static int		merge_a_max(t_lst **aa, t_lst **bb)
 	t_lst	*max;
 	t_lst	*min;
 
-	min = ft_lstmin2(ft_lstmin(*aa, ft_lstcmp_lli),
-					ft_lstmin(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
-	max = ft_lstmax2(ft_lstmax(*aa, ft_lstcmp_lli),
-					ft_lstmax(*bb, ft_lstcmp_lli), ft_lstcmp_lli);
+	min = ft_lstmin(*aa, ft_lstcmp_lli);
+	max = ft_lstmax(*aa, ft_lstcmp_lli);
 	ops = 0;
-	if (max == *bb && min == *aa)
+	if (min == *aa && ft_lstcmp_lli(*bb, max) > 0)
 		ops += merge_a_put(aa, bb);
 	return (ops);
 }
