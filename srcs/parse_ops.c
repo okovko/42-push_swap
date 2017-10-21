@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 
 #include "push_swap.h"
 
@@ -65,6 +65,7 @@ t_bool				parse_ops(t_lst **ops)
 			return (false);
 		op = *(int *)kv->val;
 		ft_lstadd(ops, ft_lstnew(&op, sizeof(op)));
+		free(ss);
 	}
 	ft_lstsrev(ops);
 	return (true);
